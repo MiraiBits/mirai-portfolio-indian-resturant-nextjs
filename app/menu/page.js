@@ -2,6 +2,7 @@
 import { useState } from 'react';
 import Image from 'next/image';
 import styles from './menu.module.css';
+import MenuItem from './MenuItem';
 
 const MENU_DATA = {
     Starters: [
@@ -32,10 +33,6 @@ export default function MenuPage() {
     };
 
     const closeModal = () => setSelectedItem(null);
-
-    const renderSpice = (level) => {
-        return "🌶️".repeat(level);
-    };
 
     return (
         <div className={styles.menuPage}>
