@@ -22,6 +22,17 @@ export const metadata = {
   keywords: ["Indian Restaurant", "Best Biryani", "North Indian Catering", "Tandoori"],
 };
 
+const jsonLd = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "Restaurant",
+  "name": "Saffron & Spice",
+  "image": "https://yourdomain.com/hero.png",
+  "servesCuisine": "Indian",
+  "priceRange": "$$",
+  "menu": "https://yourdomain.com/menu",
+  "acceptsReservations": "True",
+});
+
 export default function RootLayout({ children }) {
   return (
     <html lang="en" className={`${cormorantGaramond.variable} ${lato.variable}`}>
@@ -31,16 +42,7 @@ export default function RootLayout({ children }) {
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "Restaurant",
-              "name": "Saffron & Spice",
-              "image": "https://yourdomain.com/hero.png",
-              "servesCuisine": "Indian",
-              "priceRange": "$$",
-              "menu": "https://yourdomain.com/menu",
-              "acceptsReservations": "True"
-            }),
+            __html: jsonLd,
           }}
         />
       </body>
