@@ -34,6 +34,10 @@ export default function MenuPage() {
 
     const closeModal = () => setSelectedItem(null);
 
+    const renderSpice = (level) => {
+        return "🌶️".repeat(level);
+    };
+
     return (
         <div className={styles.menuPage}>
             <header className={styles.header}>
