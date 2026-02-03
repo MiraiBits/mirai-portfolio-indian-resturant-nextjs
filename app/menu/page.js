@@ -3,6 +3,8 @@ import { useState } from 'react';
 import Image from 'next/image';
 import styles from './menu.module.css';
 
+const SPICE_LEVELS = ["", "🌶️", "🌶️🌶️", "🌶️🌶️🌶️", "🌶️🌶️🌶️🌶️", "🌶️🌶️🌶️🌶️🌶️"];
+
 const MENU_DATA = {
     Starters: [
         { name: "Samosa Chaat", description: "Crispy pastry filled with spiced potatoes, topped with tangy tamarind chutney and yogurt.", price: "$8", veg: true, spice: 2, image: "/images/samosa-chaat.png" },
@@ -34,6 +36,9 @@ export default function MenuPage() {
     const closeModal = () => setSelectedItem(null);
 
     const renderSpice = (level) => {
+        if (level < SPICE_LEVELS.length) {
+            return SPICE_LEVELS[level];
+        }
         return "🌶️".repeat(level);
     };
 
