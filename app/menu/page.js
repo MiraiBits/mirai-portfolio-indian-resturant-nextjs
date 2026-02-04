@@ -2,7 +2,6 @@
 import { useState } from 'react';
 import Image from 'next/image';
 import styles from './menu.module.css';
-import MenuItem from './MenuItem';
 
 const MENU_DATA = {
     Starters: [
@@ -33,6 +32,10 @@ export default function MenuPage() {
     };
 
     const closeModal = () => setSelectedItem(null);
+
+    const renderSpice = (level) => {
+        return "🌶️".repeat(level);
+    };
 
     return (
         <div className={styles.menuPage}>
@@ -79,10 +82,18 @@ export default function MenuPage() {
                                         </div>
                                         <p className={styles.itemDescription}>{item.description}</p>
                                         <div className={styles.meta}>
-                                            <span className={item.veg ? styles.veg : styles.nonVeg}>
+                                            <span
+                                                className={item.veg ? styles.veg : styles.nonVeg}
+                                                aria-label={item.veg ? "Vegetarian" : "Non-vegetarian"}
+                                                role="img"
+                                            >
                                                 {item.veg ? "● V" : "▲ NV"}
                                             </span>
-                                            {item.spice > 0 && <span>{renderSpice(item.spice)}</span>}
+                                            {item.spice > 0 && (
+                                                <span aria-label={`Spice level: ${item.spice}`} role="img">
+                                                    {renderSpice(item.spice)}
+                                                </span>
+                                            )}
                                         </div>
                                     </div>
                                 </div>
