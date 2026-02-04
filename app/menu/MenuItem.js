@@ -2,12 +2,26 @@ import Image from 'next/image';
 import styles from './menu.module.css';
 
 export default function MenuItem({ item, onSelect }) {
+    const isInteractive = item.type === 'curry';
     const renderSpice = (level) => {
         return "🌶️".repeat(level);
     };
 
     return (
-        <div className={styles.item} onClick={() => onSelect(item)}>
+        <div
+            className={styles.item}
+            onClick={isInteractive ? () => onSelect(item) : undefined}
+            role={isInteractive ? "button" : undefined}
+            tabIndex={isInteractive ? 0 : undefined}
+            onKeyDown={(e) => {
+                if (isInteractive && (e.key === 'Enter' || e.key === ' ')) {
+                    e.preventDefault();
+                    onSelect(item);
+                }
+            }}
+            aria-haspopup={isInteractive ? "dialog" : undefined}
+            style={{ cursor: isInteractive ? 'pointer' : 'default' }}
+        >
             <div className={styles.itemImageWrapper}>
                 <Image
                     src={item.image}
