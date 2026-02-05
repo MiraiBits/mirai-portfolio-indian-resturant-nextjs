@@ -128,6 +128,18 @@
     border: 1px solid #8B4513;
 }
 
+.spiceContainer {
+    display: inline-flex;
+    gap: 2px;
+    align-items: center;
+}
+
+.spiceIcon {
+    color: var(--chili-red);
+    width: 16px;
+    height: 16px;
+}
+
 .modal {
     position: fixed;
     top: 0;

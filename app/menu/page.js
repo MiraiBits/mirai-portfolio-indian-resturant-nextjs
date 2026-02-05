@@ -1,8 +1,8 @@
 "use client";
 import { useState } from 'react';
 import Image from 'next/image';
+import { Flame } from 'lucide-react';
 import styles from './menu.module.css';
-import MenuItem from './MenuItem';
 
 const MENU_DATA = {
     Starters: [
@@ -33,6 +33,16 @@ export default function MenuPage() {
     };
 
     const closeModal = () => setSelectedItem(null);
+
+    const renderSpice = (level) => {
+        return (
+            <span className={styles.spiceContainer} aria-label={`Spice level: ${level} out of 3`}>
+                {Array.from({ length: level }).map((_, i) => (
+                    <Flame key={i} className={styles.spiceIcon} fill="currentColor" />
+                ))}
+            </span>
+        );
+    };
 
     return (
         <div className={styles.menuPage}>
