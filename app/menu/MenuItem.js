@@ -1,10 +1,28 @@
 import Image from 'next/image';
 import styles from './menu.module.css';
 
+/**
+ * MenuItem component extracted to allow React Compiler optimization.
+ * By isolating this component, we enable granular memoization of list items.
+ */
 export default function MenuItem({ item, onSelect }) {
     const isInteractive = item.type === 'curry';
+
     const renderSpice = (level) => {
         return "🌶️".repeat(level);
+    };
+
+    const handleClick = () => {
+        if (isInteractive && onSelect) {
+            onSelect(item);
+        }
+    };
+
+    const handleKeyDown = (e) => {
+        if (isInteractive && onSelect && (e.key === 'Enter' || e.key === ' ')) {
+            e.preventDefault();
+            onSelect(item);
+        }
     };
 
     return (
@@ -19,6 +37,10 @@ export default function MenuItem({ item, onSelect }) {
                     onSelect(item);
                 }
             }}
+            onClick={handleClick}
+            role={isInteractive ? "button" : undefined}
+            tabIndex={isInteractive ? 0 : undefined}
+            onKeyDown={handleKeyDown}
             aria-haspopup={isInteractive ? "dialog" : undefined}
             style={{ cursor: isInteractive ? 'pointer' : 'default' }}
         >
