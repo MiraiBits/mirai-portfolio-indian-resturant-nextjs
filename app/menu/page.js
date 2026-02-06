@@ -1,5 +1,5 @@
 "use client";
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import styles from './menu.module.css';
 
 const MENU_DATA = {
@@ -32,6 +32,23 @@ export default function MenuPage() {
 
     const closeModal = () => setSelectedItem(null);
 
+    useEffect(() => {
+        if (selectedItem) {
+            const previousActiveElement = document.activeElement;
+            const handleKeyDown = (e) => {
+                if (e.key === 'Escape') closeModal();
+            };
+
+            document.body.style.overflow = 'hidden';
+            window.addEventListener('keydown', handleKeyDown);
+
+            return () => {
+                document.body.style.overflow = '';
+                window.removeEventListener('keydown', handleKeyDown);
+                if (previousActiveElement) previousActiveElement.focus();
+            };
+        }
+    }, [selectedItem]);
     const renderSpice = (level) => {
         return "🌶️".repeat(level);
     };
@@ -115,9 +132,15 @@ export default function MenuPage() {
             ))}
 
             {selectedItem && (
-                <div className={styles.modal} onClick={closeModal}>
+                <div
+                    className={styles.modal}
+                    onClick={closeModal}
+                    role="dialog"
+                    aria-modal="true"
+                    aria-labelledby="modal-title"
+                >
                     <div className={styles.modalContent} onClick={(e) => e.stopPropagation()}>
-                        <h3 className={styles.modalTitle}>Complete Your Meal</h3>
+                        <h3 id="modal-title" className={styles.modalTitle}>Complete Your Meal</h3>
                         <p>Would you like to add <strong>Garlic Naan</strong> or <strong>Jeera Rice</strong> to go with your {selectedItem.name}?</p>
                         <div className={styles.modalActions}>
                             <button className="btn-primary" onClick={closeModal}>Add Garlic Naan (+$4)</button>
