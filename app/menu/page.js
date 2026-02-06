@@ -1,6 +1,5 @@
 "use client";
 import { useState } from 'react';
-import Image from 'next/image';
 import styles from './menu.module.css';
 import MenuItem from './MenuItem';
 
@@ -49,49 +48,18 @@ export default function MenuPage() {
                 <section key={category} className={styles.section}>
                     <h2 className={styles.sectionTitle}>{category}</h2>
                     <div className={styles.grid}>
-                        {items.map((item, index) => {
-                            const isInteractive = item.type === 'curry';
-                            return (
-                                <div
-                                    key={index}
-                                    className={styles.item}
-                                    onClick={isInteractive ? () => handleItemClick(item) : undefined}
-                                    role={isInteractive ? "button" : undefined}
-                                    tabIndex={isInteractive ? 0 : undefined}
-                                    onKeyDown={(e) => {
-                                        if (isInteractive && (e.key === 'Enter' || e.key === ' ')) {
-                                            e.preventDefault();
-                                            handleItemClick(item);
-                                        }
-                                    }}
-                                    aria-haspopup={isInteractive ? "dialog" : undefined}
-                                    style={{ cursor: isInteractive ? 'pointer' : 'default' }}
-                                >
-                                    <div className={styles.itemImageWrapper}>
-                                        <Image
-                                            src={item.image}
-                                            alt={item.name}
-                                            fill
-                                            style={{ objectFit: 'cover' }}
-                                            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                                        />
-                                    </div>
-                                    <div className={styles.itemContent}>
-                                        <div className={styles.itemHeader}>
-                                            <span className={styles.itemName}>{item.name}</span>
-                                            <span className={styles.itemPrice}>{item.price}</span>
-                                        </div>
-                                        <p className={styles.itemDescription}>{item.description}</p>
-                                        <div className={styles.meta}>
-                                            <span className={item.veg ? styles.veg : styles.nonVeg}>
-                                                {item.veg ? "● V" : "▲ NV"}
-                                            </span>
-                                            {item.spice > 0 && <span>{renderSpice(item.spice)}</span>}
-                                        </div>
-                                    </div>
-                                </div>
-                            );
-                        })}
+                        {/*
+                          Optimization: List items extracted to separate MenuItem component.
+                          This allows the React Compiler to memoize the list items, preventing
+                          unnecessary re-renders when parent state changes.
+                        */}
+                        {items.map((item, index) => (
+                            <MenuItem
+                                key={index}
+                                item={item}
+                                onSelect={handleItemClick}
+                            />
+                        ))}
                     </div>
                 </section>
             ))}
