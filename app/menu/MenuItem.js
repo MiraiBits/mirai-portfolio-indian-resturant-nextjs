@@ -28,6 +28,15 @@ export default function MenuItem({ item, onSelect }) {
     return (
         <div
             className={styles.item}
+            onClick={isInteractive ? () => onSelect(item) : undefined}
+            role={isInteractive ? "button" : undefined}
+            tabIndex={isInteractive ? 0 : undefined}
+            onKeyDown={(e) => {
+                if (isInteractive && (e.key === 'Enter' || e.key === ' ')) {
+                    e.preventDefault();
+                    onSelect(item);
+                }
+            }}
             onClick={handleClick}
             role={isInteractive ? "button" : undefined}
             tabIndex={isInteractive ? 0 : undefined}
