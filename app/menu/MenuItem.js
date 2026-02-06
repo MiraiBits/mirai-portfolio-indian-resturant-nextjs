@@ -1,13 +1,69 @@
+import { memo } from 'react';
 import Image from 'next/image';
 import styles from './menu.module.css';
 
+const renderSpice = (level) => {
+    return "🌶️".repeat(level);
+};
+
+const MenuItem = memo(function MenuItem({ item, onSelect }) {
+    const isInteractive = item.type === 'curry';
+
+    const handleClick = () => {
+        if (isInteractive && onSelect) {
+            onSelect(item);
+        }
+    };
+
+    const handleKeyDown = (e) => {
+        if (isInteractive && (e.key === 'Enter' || e.key === ' ')) {
+            e.preventDefault();
+            handleClick();
+        }
+/**
+ * MenuItem component extracted to allow React Compiler optimization.
+ * By isolating this component, we enable granular memoization of list items.
+ */
 export default function MenuItem({ item, onSelect }) {
+    const isInteractive = item.type === 'curry';
+
     const renderSpice = (level) => {
         return "🌶️".repeat(level);
     };
 
+    const handleClick = () => {
+        if (isInteractive && onSelect) {
+            onSelect(item);
+        }
+    };
+
+    const handleKeyDown = (e) => {
+        if (isInteractive && onSelect && (e.key === 'Enter' || e.key === ' ')) {
+            e.preventDefault();
+            onSelect(item);
+        }
+    };
+
     return (
-        <div className={styles.item} onClick={() => onSelect(item)}>
+        <div
+            className={styles.item}
+            onClick={isInteractive ? handleClick : undefined}
+            onClick={isInteractive ? () => onSelect(item) : undefined}
+            role={isInteractive ? "button" : undefined}
+            tabIndex={isInteractive ? 0 : undefined}
+            onKeyDown={(e) => {
+                if (isInteractive && (e.key === 'Enter' || e.key === ' ')) {
+                    e.preventDefault();
+                    onSelect(item);
+                }
+            }}
+            onClick={handleClick}
+            role={isInteractive ? "button" : undefined}
+            tabIndex={isInteractive ? 0 : undefined}
+            onKeyDown={handleKeyDown}
+            aria-haspopup={isInteractive ? "dialog" : undefined}
+            style={{ cursor: isInteractive ? 'pointer' : 'default' }}
+        >
             <div className={styles.itemImageWrapper}>
                 <Image
                     src={item.image}
@@ -32,4 +88,6 @@ export default function MenuItem({ item, onSelect }) {
             </div>
         </div>
     );
-}
+});
+
+export default MenuItem;

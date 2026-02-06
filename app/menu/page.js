@@ -1,6 +1,5 @@
 "use client";
 import { useState } from 'react';
-import Image from 'next/image';
 import styles from './menu.module.css';
 
 const MENU_DATA = {
@@ -99,6 +98,18 @@ export default function MenuPage() {
                                 </div>
                             );
                         })}
+                        {/*
+                          Optimization: List items extracted to separate MenuItem component.
+                          This allows the React Compiler to memoize the list items, preventing
+                          unnecessary re-renders when parent state changes.
+                        */}
+                        {items.map((item, index) => (
+                            <MenuItem
+                                key={index}
+                                item={item}
+                                onSelect={handleItemClick}
+                            />
+                        ))}
                     </div>
                 </section>
             ))}
