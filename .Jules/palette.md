@@ -5,3 +5,9 @@
 ## 2026-02-06 - Custom Modal Accessibility
 **Learning:** Custom modals implemented with simple `div` overlays often miss critical accessibility features like `role="dialog"`, `aria-modal="true"`, focus management, and keyboard support (Escape key).
 **Action:** Always add ARIA roles to custom modals and ensure they handle the Escape key and manage focus state (trapping focus or restoring it) to support keyboard users.
+## 2025-05-23 - Inaccessible Visual Indicators
+**Learning:** Visual status indicators (like spice level emojis or V/NV badges) lacked text alternatives, making them invisible to screen readers.
+**Action:** Always add `aria-label` or visually hidden text to status icons.
+## 2024-12-12 - Interactive Form Feedback
+**Learning:** Standard HTML forms are used without client-side feedback (loading, success), causing a "dead" feel on submission.
+**Action:** Convert form pages to Client Components (or use wrapper components) to manage submission state, providing immediate visual feedback (spinner, success message) and `aria-live` announcements.
