@@ -1,29 +1,6 @@
-import { memo } from 'react';
 import Image from 'next/image';
 import styles from './menu.module.css';
 
-const renderSpice = (level) => {
-    return "🌶️".repeat(level);
-};
-
-const MenuItem = memo(function MenuItem({ item, onSelect }) {
-    const isInteractive = item.type === 'curry';
-
-    const handleClick = () => {
-        if (isInteractive && onSelect) {
-            onSelect(item);
-        }
-    };
-
-    const handleKeyDown = (e) => {
-        if (isInteractive && (e.key === 'Enter' || e.key === ' ')) {
-            e.preventDefault();
-            handleClick();
-        }
-/**
- * MenuItem component extracted to allow React Compiler optimization.
- * By isolating this component, we enable granular memoization of list items.
- */
 export default function MenuItem({ item, onSelect }) {
     const isInteractive = item.type === 'curry';
 
@@ -38,9 +15,9 @@ export default function MenuItem({ item, onSelect }) {
     };
 
     const handleKeyDown = (e) => {
-        if (isInteractive && onSelect && (e.key === 'Enter' || e.key === ' ')) {
+        if (isInteractive && (e.key === 'Enter' || e.key === ' ')) {
             e.preventDefault();
-            onSelect(item);
+            handleClick();
         }
     };
 
@@ -48,16 +25,6 @@ export default function MenuItem({ item, onSelect }) {
         <div
             className={styles.item}
             onClick={isInteractive ? handleClick : undefined}
-            onClick={isInteractive ? () => onSelect(item) : undefined}
-            role={isInteractive ? "button" : undefined}
-            tabIndex={isInteractive ? 0 : undefined}
-            onKeyDown={(e) => {
-                if (isInteractive && (e.key === 'Enter' || e.key === ' ')) {
-                    e.preventDefault();
-                    onSelect(item);
-                }
-            }}
-            onClick={handleClick}
             role={isInteractive ? "button" : undefined}
             tabIndex={isInteractive ? 0 : undefined}
             onKeyDown={handleKeyDown}
@@ -80,14 +47,20 @@ export default function MenuItem({ item, onSelect }) {
                 </div>
                 <p className={styles.itemDescription}>{item.description}</p>
                 <div className={styles.meta}>
-                    <span className={item.veg ? styles.veg : styles.nonVeg}>
+                    <span
+                        className={item.veg ? styles.veg : styles.nonVeg}
+                        aria-label={item.veg ? "Vegetarian" : "Non-vegetarian"}
+                        role="img"
+                    >
                         {item.veg ? "● V" : "▲ NV"}
                     </span>
-                    {item.spice > 0 && <span>{renderSpice(item.spice)}</span>}
+                    {item.spice > 0 && (
+                        <span aria-label={`Spice level: ${item.spice}`} role="img">
+                            {renderSpice(item.spice)}
+                        </span>
+                    )}
                 </div>
             </div>
         </div>
     );
-});
-
-export default MenuItem;
+}
