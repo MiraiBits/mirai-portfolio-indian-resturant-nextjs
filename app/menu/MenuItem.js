@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import { memo } from 'react';
 import styles from './menu.module.css';
 
 /**
@@ -67,4 +68,6 @@ const MenuItem = memo(function MenuItem({ item, onSelect }) {
             </div>
         </div>
     );
-}
+});
+
+export default MenuItem;

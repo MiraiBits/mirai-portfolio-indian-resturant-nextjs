@@ -2,7 +2,6 @@
 import { useState, useEffect } from 'react';
 import MenuItem from './MenuItem';
 import styles from './menu.module.css';
-import MenuItem from './MenuItem';
 
 const MENU_DATA = {
     Starters: [
@@ -69,7 +68,7 @@ export default function MenuPage() {
                         */}
                         {items.map((item, index) => (
                             <MenuItem
-                                key={index}
+                                key={item.name}
                                 item={item}
                                 onSelect={handleItemClick}
                             />
