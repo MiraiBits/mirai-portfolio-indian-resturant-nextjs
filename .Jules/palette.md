@@ -11,3 +11,7 @@
 ## 2024-12-12 - Interactive Form Feedback
 **Learning:** Standard HTML forms are used without client-side feedback (loading, success), causing a "dead" feel on submission.
 **Action:** Convert form pages to Client Components (or use wrapper components) to manage submission state, providing immediate visual feedback (spinner, success message) and `aria-live` announcements.
+
+## 2026-06-25 - Missing Focus Styles
+**Learning:** Default browser focus rings were suppressed or missing across the site, making keyboard navigation impossible.
+**Action:** Always verify keyboard accessibility first. Added a global `:focus-visible` style using existing CSS variables to restore visibility.
