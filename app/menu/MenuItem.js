@@ -1,4 +1,3 @@
-import { memo } from 'react';
 import Image from 'next/image';
 import styles from './menu.module.css';
 
@@ -20,9 +19,9 @@ const MenuItem = memo(function MenuItem({ item, onSelect }) {
     };
 
     const handleKeyDown = (e) => {
-        if (isInteractive && onSelect && (e.key === 'Enter' || e.key === ' ')) {
+        if (isInteractive && (e.key === 'Enter' || e.key === ' ')) {
             e.preventDefault();
-            onSelect(item);
+            handleClick();
         }
     };
 
@@ -68,6 +67,4 @@ const MenuItem = memo(function MenuItem({ item, onSelect }) {
             </div>
         </div>
     );
-});
-
-export default MenuItem;
+}
