@@ -2,6 +2,7 @@
 import { useState, useEffect } from 'react';
 import MenuItem from './MenuItem';
 import styles from './menu.module.css';
+import MenuItem from './MenuItem';
 
 const MENU_DATA = {
     Starters: [

@@ -1,7 +1,11 @@
 import Image from 'next/image';
 import styles from './menu.module.css';
 
-export default function MenuItem({ item, onSelect }) {
+/**
+ * MenuItem component extracted to allow React Compiler optimization.
+ * By isolating this component, we enable granular memoization of list items.
+ */
+const MenuItem = memo(function MenuItem({ item, onSelect }) {
     const isInteractive = item.type === 'curry';
 
     const renderSpice = (level) => {
@@ -27,7 +31,7 @@ export default function MenuItem({ item, onSelect }) {
             onClick={isInteractive ? handleClick : undefined}
             role={isInteractive ? "button" : undefined}
             tabIndex={isInteractive ? 0 : undefined}
-            onKeyDown={handleKeyDown}
+            onKeyDown={isInteractive ? handleKeyDown : undefined}
             aria-haspopup={isInteractive ? "dialog" : undefined}
             style={{ cursor: isInteractive ? 'pointer' : 'default' }}
         >
