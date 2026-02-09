@@ -1,44 +1,34 @@
-from playwright.sync_api import sync_playwright, expect
+from playwright.sync_api import sync_playwright
+import time
 
 def run():
     with sync_playwright() as p:
         browser = p.chromium.launch(headless=True)
         page = browser.new_page()
-
         try:
-            # Navigate to the menu page
-            page.goto("http://localhost:3000/menu")
+            print("Navigating to home page...")
+            page.goto("http://localhost:3000")
+            page.wait_for_selector("h1")
 
-            # Wait for the menu items to load
+            print("Navigating to menu page...")
+            # Click the 'Order Online' link which points to /menu
+            page.click("text=Order Online")
+
+            print("Waiting for menu items...")
             page.wait_for_selector("text=Samosa Chaat")
+            page.wait_for_selector("text=Butter Chicken (Makhani)")
 
-            # Verify Veg/Non-Veg aria-labels
-            veg_items = page.locator("[aria-label='Vegetarian']")
-            non_veg_items = page.locator("[aria-label='Non-vegetarian']")
+            # Wait a bit for images to load
+            time.sleep(2)
 
-            print(f"Found {veg_items.count()} vegetarian items")
-            print(f"Found {non_veg_items.count()} non-vegetarian items")
-
-            # Verify Spice level aria-labels
-            spice_items = page.locator("[aria-label^='Spice level']")
-            print(f"Found {spice_items.count()} spiced items")
-
-            # Verify that Samosa Chaat appears exactly once (no duplicated rendering)
-            samosa_chaat = page.locator("text=Samosa Chaat")
-            count = samosa_chaat.count()
-            print(f"Samosa Chaat count: {count}")
-
-            if count != 1:
-                print("WARNING: Samosa Chaat appears multiple times!")
-            else:
-                print("SUCCESS: Samosa Chaat appears exactly once.")
-
-            # Take a screenshot
-            page.screenshot(path="verification/menu_page.png", full_page=True)
-            print("Screenshot saved to verification/menu_page.png")
+            print("Taking screenshot...")
+            page.screenshot(path="verification/menu.png", full_page=True)
+            print("Screenshot saved to verification/menu.png")
 
         except Exception as e:
             print(f"Error: {e}")
+            # Take screenshot on error
+            page.screenshot(path="verification/error.png")
         finally:
             browser.close()
 

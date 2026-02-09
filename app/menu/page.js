@@ -1,8 +1,7 @@
 "use client";
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import MenuItem from './MenuItem';
 import styles from './menu.module.css';
-import MenuItem from './MenuItem';
 
 const MENU_DATA = {
     Starters: [
@@ -26,13 +25,13 @@ const MENU_DATA = {
 export default function MenuPage() {
     const [selectedItem, setSelectedItem] = useState(null);
 
-    const handleItemClick = (item) => {
+    const handleItemClick = useCallback((item) => {
         if (item.type === 'curry') {
             setSelectedItem(item);
         }
-    };
+    }, []);
 
-    const closeModal = () => setSelectedItem(null);
+    const closeModal = useCallback(() => setSelectedItem(null), []);
 
     useEffect(() => {
         if (selectedItem) {
@@ -50,7 +49,7 @@ export default function MenuPage() {
                 if (previousActiveElement) previousActiveElement.focus();
             };
         }
-    }, [selectedItem]);
+    }, [selectedItem, closeModal]);
     return (
         <div className={styles.menuPage}>
             <header className={styles.header}>
@@ -69,7 +68,7 @@ export default function MenuPage() {
                         */}
                         {items.map((item, index) => (
                             <MenuItem
-                                key={index}
+                                key={item.name}
                                 item={item}
                                 onSelect={handleItemClick}
                             />
