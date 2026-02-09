@@ -11,3 +11,7 @@
 ## 2024-12-12 - Interactive Form Feedback
 **Learning:** Standard HTML forms are used without client-side feedback (loading, success), causing a "dead" feel on submission.
 **Action:** Convert form pages to Client Components (or use wrapper components) to manage submission state, providing immediate visual feedback (spinner, success message) and `aria-live` announcements.
+
+## 2025-05-24 - Focus Ring Standardization
+**Learning:** The project uses the CSS variable `var(--saffron)` for focus indicators, matching the brand color.
+**Action:** Always use `outline: 2px solid var(--saffron)` with an `outline-offset` for interactive elements to ensure consistent and accessible focus states.
