@@ -1,0 +1,119 @@
+
+> indian-restuarant-website@0.1.0 dev /app
+> next dev
+
+   ▲ Next.js 16.0.8 (Turbopack)
+   - Local:         http://localhost:3000
+   - Network:       http://192.168.0.2:3000
+
+ ✓ Starting...
+Attention: Next.js now collects completely anonymous telemetry regarding usage.
+This information is used to shape Next.js' roadmap and prioritize features.
+You can learn more, including how to opt-out if you'd not like to participate in this anonymous program, by visiting the following URL:
+https://nextjs.org/telemetry
+
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+ ✓ Ready in 818ms
+ HEAD /catering 200 in 3.1s (compile: 2.8s, render: 328ms)
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+ ⨯ ./app/menu/page.js
+Error evaluating Node.js code
+SyntaxError: /app/app/menu/page.js: Identifier 'MenuItem' has already been declared. (5:7)
+
+  3 | import MenuItem from './MenuItem';
+  4 | import styles from './menu.module.css';
+> 5 | import MenuItem from './MenuItem';
+    |        ^
+  6 |
+  7 | const MENU_DATA = {
+  8 |     Starters: [
+    [at constructor (/app/node_modules/.pnpm/next@16.0.8_@babel+core@7.29.0_babel-plugin-react-compiler@1.0.0_react-dom@19.2.1_react@19.2.1__react@19.2.1/node_modules/next/dist/compiled/babel/bundle.js:191:137105)]
+    [at JSXParserMixin.raise (/app/node_modules/.pnpm/next@16.0.8_@babel+core@7.29.0_babel-plugin-react-compiler@1.0.0_react-dom@19.2.1_react@19.2.1__react@19.2.1/node_modules/next/dist/compiled/babel/bundle.js:191:194164)]
+    [at ScopeHandler.checkRedeclarationInScope (/app/node_modules/.pnpm/next@16.0.8_@babel+core@7.29.0_babel-plugin-react-compiler@1.0.0_react-dom@19.2.1_react@19.2.1__react@19.2.1/node_modules/next/dist/compiled/babel/bundle.js:191:163166)]
+    [at ScopeHandler.declareName (/app/node_modules/.pnpm/next@16.0.8_@babel+core@7.29.0_babel-plugin-react-compiler@1.0.0_react-dom@19.2.1_react@19.2.1__react@19.2.1/node_modules/next/dist/compiled/babel/bundle.js:191:162529)]
+    [at JSXParserMixin.declareNameFromIdentifier (/app/node_modules/.pnpm/next@16.0.8_@babel+core@7.29.0_babel-plugin-react-compiler@1.0.0_react-dom@19.2.1_react@19.2.1__react@19.2.1/node_modules/next/dist/compiled/babel/bundle.js:191:279226)]
+    [at JSXParserMixin.checkIdentifier (/app/node_modules/.pnpm/next@16.0.8_@babel+core@7.29.0_babel-plugin-react-compiler@1.0.0_react-dom@19.2.1_react@19.2.1__react@19.2.1/node_modules/next/dist/compiled/babel/bundle.js:191:279152)]
+    [at JSXParserMixin.checkLVal (/app/node_modules/.pnpm/next@16.0.8_@babel+core@7.29.0_babel-plugin-react-compiler@1.0.0_react-dom@19.2.1_react@19.2.1__react@19.2.1/node_modules/next/dist/compiled/babel/bundle.js:191:278197)]
+    [at JSXParserMixin.finishImportSpecifier (/app/node_modules/.pnpm/next@16.0.8_@babel+core@7.29.0_babel-plugin-react-compiler@1.0.0_react-dom@19.2.1_react@19.2.1__react@19.2.1/node_modules/next/dist/compiled/babel/bundle.js:191:422705)]
+    [at JSXParserMixin.parseImportSpecifierLocal (/app/node_modules/.pnpm/next@16.0.8_@babel+core@7.29.0_babel-plugin-react-compiler@1.0.0_react-dom@19.2.1_react@19.2.1__react@19.2.1/node_modules/next/dist/compiled/babel/bundle.js:191:422638)]
+    [at JSXParserMixin.maybeParseDefaultImportSpecifier (/app/node_modules/.pnpm/next@16.0.8_@babel+core@7.29.0_babel-plugin-react-compiler@1.0.0_react-dom@19.2.1_react@19.2.1__react@19.2.1/node_modules/next/dist/compiled/babel/bundle.js:191:424839)]
+    [at JSXParserMixin.parseImportSpecifiersAndAfter (/app/node_modules/.pnpm/next@16.0.8_@babel+core@7.29.0_babel-plugin-react-compiler@1.0.0_react-dom@19.2.1_react@19.2.1__react@19.2.1/node_modules/next/dist/compiled/babel/bundle.js:191:421936)]
+    [at JSXParserMixin.parseImport (/app/node_modules/.pnpm/next@16.0.8_@babel+core@7.29.0_babel-plugin-react-compiler@1.0.0_react-dom@19.2.1_react@19.2.1__react@19.2.1/node_modules/next/dist/compiled/babel/bundle.js:191:421803)]
+    [at JSXParserMixin.parseStatementContent (/app/node_modules/.pnpm/next@16.0.8_@babel+core@7.29.0_babel-plugin-react-compiler@1.0.0_react-dom@19.2.1_react@19.2.1__react@19.2.1/node_modules/next/dist/compiled/babel/bundle.js:191:391781)]
+    [at JSXParserMixin.parseStatementLike (/app/node_modules/.pnpm/next@16.0.8_@babel+core@7.29.0_babel-plugin-react-compiler@1.0.0_react-dom@19.2.1_react@19.2.1__react@19.2.1/node_modules/next/dist/compiled/babel/bundle.js:191:389494)]
+    [at JSXParserMixin.parseModuleItem (/app/node_modules/.pnpm/next@16.0.8_@babel+core@7.29.0_babel-plugin-react-compiler@1.0.0_react-dom@19.2.1_react@19.2.1__react@19.2.1/node_modules/next/dist/compiled/babel/bundle.js:191:389055)]
+    [at JSXParserMixin.parseBlockOrModuleBlockBody (/app/node_modules/.pnpm/next@16.0.8_@babel+core@7.29.0_babel-plugin-react-compiler@1.0.0_react-dom@19.2.1_react@19.2.1__react@19.2.1/node_modules/next/dist/compiled/babel/bundle.js:191:401400)]
+    [at JSXParserMixin.parseBlockBody (/app/node_modules/.pnpm/next@16.0.8_@babel+core@7.29.0_babel-plugin-react-compiler@1.0.0_react-dom@19.2.1_react@19.2.1__react@19.2.1/node_modules/next/dist/compiled/babel/bundle.js:191:401223)]
+    [at JSXParserMixin.parseProgram (/app/node_modules/.pnpm/next@16.0.8_@babel+core@7.29.0_babel-plugin-react-compiler@1.0.0_react-dom@19.2.1_react@19.2.1__react@19.2.1/node_modules/next/dist/compiled/babel/bundle.js:191:386857)]
+    [at JSXParserMixin.parseTopLevel (/app/node_modules/.pnpm/next@16.0.8_@babel+core@7.29.0_babel-plugin-react-compiler@1.0.0_react-dom@19.2.1_react@19.2.1__react@19.2.1/node_modules/next/dist/compiled/babel/bundle.js:191:386575)]
+    [at JSXParserMixin.parse (/app/node_modules/.pnpm/next@16.0.8_@babel+core@7.29.0_babel-plugin-react-compiler@1.0.0_react-dom@19.2.1_react@19.2.1__react@19.2.1/node_modules/next/dist/compiled/babel/bundle.js:191:426834)]
+    [at parse (/app/node_modules/.pnpm/next@16.0.8_@babel+core@7.29.0_babel-plugin-react-compiler@1.0.0_react-dom@19.2.1_react@19.2.1__react@19.2.1/node_modules/next/dist/compiled/babel/bundle.js:191:427092)]
+    [at parser (/app/node_modules/.pnpm/next@16.0.8_@babel+core@7.29.0_babel-plugin-react-compiler@1.0.0_react-dom@19.2.1_react@19.2.1__react@19.2.1/node_modules/next/dist/compiled/babel/bundle.js:1:142018)]
+    [at <anonymous>]
+    [at normalizeFile (/app/node_modules/.pnpm/next@16.0.8_@babel+core@7.29.0_babel-plugin-react-compiler@1.0.0_react-dom@19.2.1_react@19.2.1__react@19.2.1/node_modules/next/dist/compiled/babel/bundle.js:13:13275)]
+    [at <anonymous>]
+    [at consumeIterator (/app/node_modules/.pnpm/next@16.0.8_@babel+core@7.29.0_babel-plugin-react-compiler@1.0.0_react-dom@19.2.1_react@19.2.1__react@19.2.1/node_modules/next/dist/build/babel/loader/util.js:13:38)]
+    [at transform (/app/node_modules/.pnpm/next@16.0.8_@babel+core@7.29.0_babel-plugin-react-compiler@1.0.0_react-dom@19.2.1_react@19.2.1__react@19.2.1/node_modules/next/dist/build/babel/loader/transform.js:89:44)]
+    [at async (/app/node_modules/.pnpm/next@16.0.8_@babel+core@7.29.0_babel-plugin-react-compiler@1.0.0_react-dom@19.2.1_react@19.2.1__react@19.2.1/node_modules/next/dist/build/babel/loader/index.js:36:108)]
+    at async DummySpan.traceAsyncFn (turbopack:///[turbopack-node]/transforms/webpack-loaders.ts:115:12) [/app/.next/dev/build/chunks/[root-of-the-server]__6e020478._.js:126:16]
+    [at async nextBabelLoader (/app/node_modules/.pnpm/next@16.0.8_@babel+core@7.29.0_babel-plugin-react-compiler@1.0.0_react-dom@19.2.1_react@19.2.1__react@19.2.1/node_modules/next/dist/build/babel/loader/index.js:36:63)]
+    at async DummySpan.traceAsyncFn (turbopack:///[turbopack-node]/transforms/webpack-loaders.ts:115:12) [/app/.next/dev/build/chunks/[root-of-the-server]__6e020478._.js:126:16]
+
+Import traces:
+  Client Component Browser:
+    ./app/menu/page.js [Client Component Browser]
+    ./app/menu/page.js [Server Component]
+
+  Client Component SSR:
+    ./app/menu/page.js [Client Component SSR]
+    ./app/menu/page.js [Server Component]
+
+
+
+./app/menu/page.js:5:8
+Ecmascript file had an error
+[0m [90m 3 |[39m [36mimport[39m [33mMenuItem[39m [36mfrom[39m [32m'./MenuItem'[39m[33m;[39m
+ [90m 4 |[39m [36mimport[39m styles [36mfrom[39m [32m'./menu.module.css'[39m[33m;[39m
+[31m[1m>[22m[39m[90m 5 |[39m [36mimport[39m [33mMenuItem[39m [36mfrom[39m [32m'./MenuItem'[39m[33m;[39m
+ [90m   |[39m        [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m 6 |[39m
+ [90m 7 |[39m [36mconst[39m [33mMENU_DATA[39m [33m=[39m {
+ [90m 8 |[39m     [33mStarters[39m[33m:[39m [[0m
+
+the name `MenuItem` is defined multiple times
+
+Import traces:
+  Client Component Browser:
+    ./app/menu/page.js [Client Component Browser]
+    ./app/menu/page.js [Server Component]
+
+  Client Component SSR:
+    ./app/menu/page.js [Client Component SSR]
+    ./app/menu/page.js [Server Component]
+
+
+
+./app/menu/MenuItem.js:70:2
+Parsing ecmascript source code failed
+[0m [90m 68 |[39m         [33m<[39m[33m/[39m[33mdiv[39m[33m>[39m
+ [90m 69 |[39m     )[33m;[39m
+[31m[1m>[22m[39m[90m 70 |[39m }
+ [90m    |[39m  [31m[1m^[22m[39m
+ [90m 71 |[39m[0m
+
+Expected ',', got '<eof>'
+
+Import trace:
+  Client Component SSR:
+    ./app/menu/MenuItem.js [Client Component SSR]
+    ./app/menu/page.js [Client Component SSR]
+    ./app/menu/page.js [Server Component]
+
+
+ HEAD /menu 500 in 4.4s (compile: 4.2s, render: 209ms)
+ ✓ Compiled in 1714ms
+ HEAD /menu 200 in 1051ms (compile: 495ms, render: 557ms)
+ ✓ Compiled in 509ms
+ HEAD /catering 200 in 302ms (compile: 136ms, render: 166ms)
+ GET /menu 200 in 106ms (compile: 6ms, render: 101ms)
+ GET /catering 200 in 118ms (compile: 5ms, render: 113ms)
