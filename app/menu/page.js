@@ -1,8 +1,7 @@
 "use client";
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import MenuItem from './MenuItem';
 import styles from './menu.module.css';
-import MenuItem from './MenuItem';
 
 const MENU_DATA = {
     Starters: [
@@ -25,6 +24,7 @@ const MENU_DATA = {
 
 export default function MenuPage() {
     const [selectedItem, setSelectedItem] = useState(null);
+    const modalRef = useRef(null);
 
     const handleItemClick = (item) => {
         if (item.type === 'curry') {
@@ -43,6 +43,11 @@ export default function MenuPage() {
 
             document.body.style.overflow = 'hidden';
             window.addEventListener('keydown', handleKeyDown);
+
+            // Move focus to the modal title for accessibility
+            if (modalRef.current) {
+                modalRef.current.focus();
+            }
 
             return () => {
                 document.body.style.overflow = '';
@@ -87,7 +92,14 @@ export default function MenuPage() {
                     aria-labelledby="modal-title"
                 >
                     <div className={styles.modalContent} onClick={(e) => e.stopPropagation()}>
-                        <h3 id="modal-title" className={styles.modalTitle}>Complete Your Meal</h3>
+                        <h3
+                            id="modal-title"
+                            className={styles.modalTitle}
+                            ref={modalRef}
+                            tabIndex="-1"
+                        >
+                            Complete Your Meal
+                        </h3>
                         <p>Would you like to add <strong>Garlic Naan</strong> or <strong>Jeera Rice</strong> to go with your {selectedItem.name}?</p>
                         <div className={styles.modalActions}>
                             <button className="btn-primary" onClick={closeModal}>Add Garlic Naan (+$4)</button>
