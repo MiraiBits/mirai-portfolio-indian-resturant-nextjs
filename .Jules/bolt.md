@@ -1,0 +1,3 @@
+## 2024-02-18 - React Compiler vs Manual Optimization
+**Learning:** The React Compiler (enabled in Next.js 16) automatically optimized `MenuItem` re-renders effectively, making manual `memo` and `useCallback` redundant for performance gains in this specific case. However, fixing the broken `memo` syntax was necessary for the build, and replacing `key={index}` with a stable key remains a critical manual optimization for list reconciliation that the compiler cannot infer.
+**Action:** When working with React Compiler enabled, focus on list reconciliation (keys) and algorithmic complexity rather than basic re-render optimizations, but continue to fix syntax errors in existing manual optimizations.
