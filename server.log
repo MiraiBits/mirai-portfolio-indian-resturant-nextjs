@@ -4,7 +4,7 @@
 
  ✓ Starting...
 [baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
- ✓ Ready in 804ms
- ○ Compiling /menu ...
+ ✓ Ready in 651ms
 [baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
- GET /menu 200 in 6.7s (compile: 6.1s, render: 577ms)
+ ○ Compiling /menu ...
+ GET /menu 200 in 4.3s (compile: 3.9s, render: 394ms)
