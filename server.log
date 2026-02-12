@@ -1,10 +1,14 @@
+
+> indian-restuarant-website@0.1.0 dev /app
+> next dev -H 0.0.0.0
+
    ▲ Next.js 16.0.8 (Turbopack)
    - Local:         http://localhost:3000
    - Network:       http://0.0.0.0:3000
 
  ✓ Starting...
 [baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
- ✓ Ready in 804ms
- ○ Compiling /menu ...
+ ✓ Ready in 714ms
 [baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
- GET /menu 200 in 6.7s (compile: 6.1s, render: 577ms)
+ ○ Compiling /catering ...
+ GET /catering 200 in 5.0s (compile: 4.5s, render: 542ms)
