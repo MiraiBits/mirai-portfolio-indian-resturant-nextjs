@@ -1,8 +1,7 @@
 "use client";
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import MenuItem from './MenuItem';
 import styles from './menu.module.css';
-import MenuItem from './MenuItem';
 
 const MENU_DATA = {
     Starters: [
@@ -33,10 +32,16 @@ export default function MenuPage() {
     };
 
     const closeModal = () => setSelectedItem(null);
+    const modalRef = useRef(null);
 
     useEffect(() => {
         if (selectedItem) {
             const previousActiveElement = document.activeElement;
+
+            // Shift focus to the modal for accessibility
+            requestAnimationFrame(() => {
+                modalRef.current?.focus();
+            });
             const handleKeyDown = (e) => {
                 if (e.key === 'Escape') closeModal();
             };
@@ -80,15 +85,18 @@ export default function MenuPage() {
 
             {selectedItem && (
                 <div
+                    ref={modalRef}
+                    tabIndex={-1}
                     className={styles.modal}
                     onClick={closeModal}
                     role="dialog"
                     aria-modal="true"
                     aria-labelledby="modal-title"
+                    aria-describedby="modal-desc"
                 >
                     <div className={styles.modalContent} onClick={(e) => e.stopPropagation()}>
                         <h3 id="modal-title" className={styles.modalTitle}>Complete Your Meal</h3>
-                        <p>Would you like to add <strong>Garlic Naan</strong> or <strong>Jeera Rice</strong> to go with your {selectedItem.name}?</p>
+                        <p id="modal-desc">Would you like to add <strong>Garlic Naan</strong> or <strong>Jeera Rice</strong> to go with your {selectedItem.name}?</p>
                         <div className={styles.modalActions}>
                             <button className="btn-primary" onClick={closeModal}>Add Garlic Naan (+$4)</button>
                             <button className="btn-primary" onClick={closeModal}>Add Jeera Rice (+$5)</button>
