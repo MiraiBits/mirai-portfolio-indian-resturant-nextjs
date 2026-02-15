@@ -11,3 +11,7 @@
 ## 2024-12-12 - Interactive Form Feedback
 **Learning:** Standard HTML forms are used without client-side feedback (loading, success), causing a "dead" feel on submission.
 **Action:** Convert form pages to Client Components (or use wrapper components) to manage submission state, providing immediate visual feedback (spinner, success message) and `aria-live` announcements.
+
+## 2025-05-27 - Root Layout Structure for Accessibility
+**Learning:** Next.js root layouts often render `{children}` directly inside `body`, missing a stable container ID for "Skip to Content" links to target.
+**Action:** In `RootLayout` (`layout.js`), wrap `{children}` in a `<div id="main-content">` and place the `<a href="#main-content" className="skip-link">` as the first child of `<body>`.

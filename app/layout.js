@@ -37,8 +37,11 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" className={`${cormorantGaramond.variable} ${lato.variable}`}>
       <body>
+        <a href="#main-content" className="skip-link">Skip to content</a>
         <Navbar />
-        {children}
+        <div id="main-content">
+          {children}
+        </div>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{

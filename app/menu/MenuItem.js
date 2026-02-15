@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import styles from './menu.module.css';
+import { memo } from 'react';
 
 /**
  * MenuItem component extracted to allow React Compiler optimization.
@@ -67,4 +68,6 @@ const MenuItem = memo(function MenuItem({ item, onSelect }) {
             </div>
         </div>
     );
-}
+});
+
+export default MenuItem;
