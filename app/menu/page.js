@@ -1,5 +1,5 @@
 "use client";
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
 import MenuItem from './MenuItem';
 import styles from './menu.module.css';
 
@@ -24,20 +24,51 @@ const MENU_DATA = {
 
 export default function MenuPage() {
     const [selectedItem, setSelectedItem] = useState(null);
+    const modalRef = useRef(null);
 
-    const handleItemClick = (item) => {
+    const handleItemClick = useCallback((item) => {
         if (item.type === 'curry') {
             setSelectedItem(item);
         }
-    };
+    }, []);
 
     const closeModal = () => setSelectedItem(null);
 
     useEffect(() => {
         if (selectedItem) {
             const previousActiveElement = document.activeElement;
+            const modalElement = modalRef.current;
+
+            // Focus Trap Logic
+            const focusableElements = modalElement.querySelectorAll(
+                'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+            );
+            const firstElement = focusableElements[0];
+            const lastElement = focusableElements[focusableElements.length - 1];
+
+            if (firstElement) {
+                firstElement.focus();
+            }
+
             const handleKeyDown = (e) => {
-                if (e.key === 'Escape') closeModal();
+                if (e.key === 'Escape') {
+                    closeModal();
+                    return;
+                }
+
+                if (e.key === 'Tab') {
+                    if (e.shiftKey) { /* shift + tab */
+                        if (document.activeElement === firstElement) {
+                            e.preventDefault();
+                            lastElement.focus();
+                        }
+                    } else { /* tab */
+                        if (document.activeElement === lastElement) {
+                            e.preventDefault();
+                            firstElement.focus();
+                        }
+                    }
+                }
             };
 
             document.body.style.overflow = 'hidden';
@@ -68,7 +99,7 @@ export default function MenuPage() {
                         */}
                         {items.map((item, index) => (
                             <MenuItem
-                                key={index}
+                                key={item.name}
                                 item={item}
                                 onSelect={handleItemClick}
                             />
@@ -79,6 +110,7 @@ export default function MenuPage() {
 
             {selectedItem && (
                 <div
+                    ref={modalRef}
                     className={styles.modal}
                     onClick={closeModal}
                     role="dialog"
