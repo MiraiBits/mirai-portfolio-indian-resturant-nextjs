@@ -1,73 +1,69 @@
-import { memo } from 'react';
 import Image from 'next/image';
-import styles from './menu.module.css';
+import { Plus } from 'lucide-react';
 
-/**
- * MenuItem component extracted to allow React Compiler optimization.
- * By isolating this component, we enable granular memoization of list items.
- */
+// Note: Removed manual React.memo as per project strategy (reactCompiler: true).
+// The compiler automatically memoizes components, making manual wrapping redundant.
+
 export default function MenuItem({ item, onSelect }) {
-    const isInteractive = item.type === 'curry';
-
-    const renderSpice = (level) => {
-        return "🌶️".repeat(level);
-    };
-
-    const handleClick = () => {
-        if (isInteractive && onSelect) {
-            onSelect(item);
+  return (
+    <div
+      className="group relative bg-white rounded-xl shadow-sm hover:shadow-md transition-all duration-300 overflow-hidden border border-stone-100 cursor-pointer flex flex-col h-full"
+      onClick={() => onSelect(item)}
+      role="button"
+      tabIndex={0}
+      onKeyDown={(e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          onSelect(item);
         }
-    };
+      }}
+    >
+      <div className="relative h-48 w-full overflow-hidden">
+        <Image
+          src={item.image}
+          alt={item.name}
+          fill
+          className="object-cover transition-transform duration-500 group-hover:scale-105"
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+      </div>
 
-    const handleKeyDown = (e) => {
-        if (isInteractive && (e.key === 'Enter' || e.key === ' ')) {
-            e.preventDefault();
-            handleClick();
-        }
-    };
-
-    return (
-        <div
-            className={styles.item}
-            onClick={isInteractive ? handleClick : undefined}
-            role={isInteractive ? "button" : undefined}
-            tabIndex={isInteractive ? 0 : undefined}
-            onKeyDown={isInteractive ? handleKeyDown : undefined}
-            aria-haspopup={isInteractive ? "dialog" : undefined}
-            style={{ cursor: isInteractive ? 'pointer' : 'default' }}
-        >
-            <div className={styles.itemImageWrapper}>
-                <Image
-                    src={item.image}
-                    alt={item.name}
-                    fill
-                    style={{ objectFit: 'cover' }}
-                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                />
-            </div>
-            <div className={styles.itemContent}>
-                <div className={styles.itemHeader}>
-                    <span className={styles.itemName}>{item.name}</span>
-                    <span className={styles.itemPrice}>{item.price}</span>
-                </div>
-                <p className={styles.itemDescription}>{item.description}</p>
-                <div className={styles.meta}>
-                    <span
-                        className={item.veg ? styles.veg : styles.nonVeg}
-                        aria-label={item.veg ? "Vegetarian" : "Non-vegetarian"}
-                        role="img"
-                    >
-                        {item.veg ? "● V" : "▲ NV"}
-                    </span>
-                    {item.spice > 0 && (
-                        <span aria-label={`Spice level: ${item.spice}`} role="img">
-                            {renderSpice(item.spice)}
-                        </span>
-                    )}
-                </div>
-            </div>
+      <div className="p-4 flex flex-col flex-grow">
+        <div className="flex justify-between items-start mb-2">
+          <h3 className="font-serif text-xl font-medium text-stone-800 group-hover:text-[var(--saffron)] transition-colors">
+            {item.name}
+          </h3>
+          <span className="font-medium text-[var(--saffron)] whitespace-nowrap ml-2">
+            ${item.price}
+          </span>
         </div>
-    );
-});
 
-export default MenuItem;
+        <p className="text-stone-600 text-sm leading-relaxed mb-4 line-clamp-2 flex-grow">
+          {item.description}
+        </p>
+
+        <div className="flex items-center justify-between mt-auto pt-4 border-t border-stone-100">
+          <div className="flex gap-2">
+            {item.spicy && (
+              <span className="px-2 py-0.5 text-xs font-medium text-red-700 bg-red-50 rounded-full flex items-center gap-1">
+                🌶️ Spicy
+              </span>
+            )}
+            {item.vegan && (
+              <span className="px-2 py-0.5 text-xs font-medium text-green-700 bg-green-50 rounded-full flex items-center gap-1">
+                🌱 Vegan
+              </span>
+            )}
+          </div>
+          <button
+            className="w-8 h-8 rounded-full bg-stone-100 text-stone-600 flex items-center justify-center group-hover:bg-[var(--saffron)] group-hover:text-white transition-colors"
+            aria-label={`Add ${item.name} to order`}
+          >
+            <Plus size={16} />
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+}
