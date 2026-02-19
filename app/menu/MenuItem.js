@@ -1,10 +1,13 @@
-import { memo } from 'react';
 import Image from 'next/image';
 import styles from './menu.module.css';
 
 /**
  * MenuItem component extracted to allow React Compiler optimization.
  * By isolating this component, we enable granular memoization of list items.
+ *
+ * Optimization Note:
+ * 1. Removed manual React.memo wrapper as 'reactCompiler: true' in next.config.mjs
+ *    automatically handles memoization for this component.
  */
 export default function MenuItem({ item, onSelect }) {
     const isInteractive = item.type === 'curry';
@@ -37,12 +40,19 @@ export default function MenuItem({ item, onSelect }) {
             style={{ cursor: isInteractive ? 'pointer' : 'default' }}
         >
             <div className={styles.itemImageWrapper}>
+                {/*
+                  Optimization: Updated 'sizes' prop to match actual layout breakpoints.
+                  - (max-width: 768px) 100vw: Full width on mobile
+                  - (max-width: 1000px) 50vw: 2 columns on tablet
+                  - 500px: Fixed width on larger screens (approx. 33vw or max width constraint)
+                  This prevents loading unnecessarily large images.
+                */}
                 <Image
                     src={item.image}
                     alt={item.name}
                     fill
                     style={{ objectFit: 'cover' }}
-                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                    sizes="(max-width: 768px) 100vw, (max-width: 1000px) 50vw, 500px"
                 />
             </div>
             <div className={styles.itemContent}>
@@ -68,6 +78,4 @@ export default function MenuItem({ item, onSelect }) {
             </div>
         </div>
     );
-});
-
-export default MenuItem;
+}
