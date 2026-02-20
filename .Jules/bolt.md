@@ -4,3 +4,6 @@
 ## 2024-05-22 - Broken Manual Optimization vs React Compiler
 **Learning:** The codebase contained a broken manual `React.memo` implementation (missing import and syntax error) while `reactCompiler: true` was enabled.
 **Action:** When `reactCompiler` is enabled, rely on it for automatic memoization unless specific fine-tuning is needed. If manual `memo` is used, ensure correct syntax and imports to avoid build failures. Always verify build after refactoring.
+## 2025-05-22 - React Compiler Limits & Explicit Memoization
+**Learning:** Despite `reactCompiler: true`, removing explicit `React.memo` from complex list item components (`MenuItem`) caused a measurable render time regression (579ms -> 625ms). The compiler may not perfectly optimize all cases.
+**Action:** For performance-critical list rendering, verify impact before removing `React.memo`. Consider keeping explicit memoization if compiler results are suboptimal.
