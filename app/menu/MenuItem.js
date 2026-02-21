@@ -1,4 +1,3 @@
-import { memo } from 'react';
 import Image from 'next/image';
 import styles from './menu.module.css';
 
@@ -68,6 +67,4 @@ export default function MenuItem({ item, onSelect }) {
             </div>
         </div>
     );
-});
-
-export default MenuItem;
+}
