@@ -68,12 +68,13 @@ export default function ReservationForm() {
                     <input
                         type="checkbox"
                         id="largeGroup"
+                        aria-describedby="largeGroup-description"
                         style={{ marginRight: '10px' }}
                         disabled={status === 'submitting'}
                     />
                     Large Group (10+ people)?
                 </label>
-                <small style={{ color: '#ccc' }}>For large groups, we will contact you to confirm arrangements.</small>
+                <small id="largeGroup-description" style={{ color: '#ccc' }}>For large groups, we will contact you to confirm arrangements.</small>
             </div>
 
             <button
