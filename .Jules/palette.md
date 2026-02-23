@@ -11,3 +11,7 @@
 ## 2024-12-12 - Interactive Form Feedback
 **Learning:** Standard HTML forms are used without client-side feedback (loading, success), causing a "dead" feel on submission.
 **Action:** Convert form pages to Client Components (or use wrapper components) to manage submission state, providing immediate visual feedback (spinner, success message) and `aria-live` announcements.
+
+## 2025-02-18 - Orphaned Form Helper Text
+**Learning:** Helper text placed below inputs (like `<small>` tags) is often not programmatically associated with the input, leaving screen reader users unaware of important context or constraints.
+**Action:** Always assign an `id` to the helper text and reference it using `aria-describedby` on the corresponding input field.
