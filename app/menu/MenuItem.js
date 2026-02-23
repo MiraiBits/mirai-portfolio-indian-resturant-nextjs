@@ -1,10 +1,12 @@
-import { memo } from 'react';
 import Image from 'next/image';
 import styles from './menu.module.css';
 
 /**
  * MenuItem component extracted to allow React Compiler optimization.
  * By isolating this component, we enable granular memoization of list items.
+ *
+ * Optimization: Manual React.memo removed. Relying on React Compiler for automatic memoization
+ * as per project configuration (reactCompiler: true).
  */
 export default function MenuItem({ item, onSelect }) {
     const isInteractive = item.type === 'curry';
@@ -68,6 +70,4 @@ export default function MenuItem({ item, onSelect }) {
             </div>
         </div>
     );
-});
-
-export default MenuItem;
+}
