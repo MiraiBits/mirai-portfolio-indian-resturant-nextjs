@@ -70,10 +70,11 @@ export default function ReservationForm() {
                         id="largeGroup"
                         style={{ marginRight: '10px' }}
                         disabled={status === 'submitting'}
+                        aria-describedby="largeGroup-desc"
                     />
                     Large Group (10+ people)?
                 </label>
-                <small style={{ color: '#ccc' }}>For large groups, we will contact you to confirm arrangements.</small>
+                <small id="largeGroup-desc" style={{ color: '#ccc' }}>For large groups, we will contact you to confirm arrangements.</small>
             </div>
 
             <button
