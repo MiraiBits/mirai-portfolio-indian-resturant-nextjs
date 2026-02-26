@@ -108,3 +108,20 @@ a {
 .spin {
   animation: spin 1s linear infinite;
 }
+
+.skip-to-content {
+  position: absolute;
+  top: -9999px;
+  left: 0;
+  background-color: var(--saffron);
+  color: white;
+  padding: 1rem;
+  z-index: 2000;
+  text-decoration: none;
+  font-weight: 700;
+  border-radius: 0 0 4px 4px;
+}
+
+.skip-to-content:focus {
+  top: 0;
+}
