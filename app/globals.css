@@ -101,6 +101,25 @@ a {
   padding: 0 1rem;
 }
 
+/* Accessibility: Skip to Content */
+.skip-link {
+  position: absolute;
+  top: -100px;
+  left: 0;
+  background-color: var(--saffron);
+  color: white;
+  padding: 1rem;
+  z-index: 2000; /* Ensure it overlays the fixed navbar */
+  font-weight: bold;
+  text-transform: uppercase;
+  transition: top 0.3s ease;
+}
+
+.skip-link:focus {
+  top: 0;
+  outline: 2px solid var(--gold);
+}
+
 @keyframes spin {
   to { transform: rotate(360deg); }
 }

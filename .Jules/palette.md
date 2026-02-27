@@ -11,3 +11,7 @@
 ## 2024-12-12 - Interactive Form Feedback
 **Learning:** Standard HTML forms are used without client-side feedback (loading, success), causing a "dead" feel on submission.
 **Action:** Convert form pages to Client Components (or use wrapper components) to manage submission state, providing immediate visual feedback (spinner, success message) and `aria-live` announcements.
+
+## 2026-02-27 - Hidden Content Navigation with Fixed Navbars
+**Learning:** The application uses a fixed, absolute-positioned navbar at the top of the page. Without a "Skip to Content" link, keyboard-only and screen reader users must tab through every single navigation link on every page load to access the main content, which is a poor accessibility experience.
+**Action:** Always include a "Skip to Content" link at the start of the `<body>` that links to a `#main-content` wrapper around the page contents. Ensure its `z-index` is higher than the fixed navbar when it receives focus so it remains visible.
