@@ -11,3 +11,7 @@
 ## 2024-12-12 - Interactive Form Feedback
 **Learning:** Standard HTML forms are used without client-side feedback (loading, success), causing a "dead" feel on submission.
 **Action:** Convert form pages to Client Components (or use wrapper components) to manage submission state, providing immediate visual feedback (spinner, success message) and `aria-live` announcements.
+
+## 2025-05-24 - Missing Skip-to-Content Navigation
+**Learning:** The application featured a persistent header with navigation links but lacked a "Skip to Content" link. This forced keyboard-only and screen reader users to repeatedly navigate through the menu on every page load before reaching the main content, severely degrading the experience.
+**Action:** Always include a visually hidden but focusable "Skip to Content" link (`<a href="#main-content">`) as the very first focusable element in the DOM (e.g., in `app/layout.js`). Ensure the target container (`<main id="main-content">`) has `tabIndex="-1"` and `.skip-link:focus` ensures high visibility above any fixed headers.

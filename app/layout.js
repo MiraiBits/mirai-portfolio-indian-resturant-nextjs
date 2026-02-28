@@ -37,8 +37,31 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" className={`${cormorantGaramond.variable} ${lato.variable}`}>
       <body>
+        <a
+          href="#main-content"
+          style={{
+            position: 'absolute',
+            top: '-40px',
+            left: '0',
+            backgroundColor: 'var(--saffron)',
+            color: 'white',
+            padding: '8px 16px',
+            zIndex: 2000,
+            fontFamily: 'var(--font-body)',
+            fontWeight: 700,
+            textTransform: 'uppercase',
+            letterSpacing: '1px',
+            transition: 'top 0.2s ease'
+          }}
+          onFocus={(e) => e.target.style.top = '0'}
+          onBlur={(e) => e.target.style.top = '-40px'}
+        >
+          Skip to Content
+        </a>
         <Navbar />
-        {children}
+        <main id="main-content" tabIndex="-1">
+          {children}
+        </main>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
