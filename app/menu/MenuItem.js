@@ -68,6 +68,4 @@ export default function MenuItem({ item, onSelect }) {
             </div>
         </div>
     );
-});
-
-export default MenuItem;
+}
