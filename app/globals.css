@@ -1,4 +1,9 @@
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Lato:wght@300;400;700&display=swap');
+/*
+ * ⚡ Bolt: Removed redundant @import for Google Fonts.
+ * The application uses `next/font/google` in app/layout.js which already
+ * optimizes and injects `--font-heading` and `--font-body` CSS variables.
+ * Removing the @import prevents a render-blocking request and double-loading.
+ */
 
 :root {
   /* Brand Colors */
@@ -16,10 +21,6 @@
   --text-secondary: #E0E0E0;
   --text-dark: #333333;
   /* Dark on light background */
-
-  /* Fonts */
-  --font-heading: 'Cormorant Garamond', serif;
-  --font-body: 'Lato', sans-serif;
 }
 
 * {
