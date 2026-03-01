@@ -6,7 +6,7 @@ import styles from './menu.module.css';
  * MenuItem component extracted to allow React Compiler optimization.
  * By isolating this component, we enable granular memoization of list items.
  */
-export default function MenuItem({ item, onSelect }) {
+function MenuItem({ item, onSelect }) {
     const isInteractive = item.type === 'curry';
 
     const renderSpice = (level) => {
@@ -68,6 +68,6 @@ export default function MenuItem({ item, onSelect }) {
             </div>
         </div>
     );
-});
+}
 
 export default MenuItem;
