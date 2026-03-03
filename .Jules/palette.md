@@ -15,3 +15,6 @@
 ## 2026-02-27 - Hidden Content Navigation with Fixed Navbars
 **Learning:** The application uses a fixed, absolute-positioned navbar at the top of the page. Without a "Skip to Content" link, keyboard-only and screen reader users must tab through every single navigation link on every page load to access the main content, which is a poor accessibility experience.
 **Action:** Always include a "Skip to Content" link at the start of the `<body>` that links to a `#main-content` wrapper around the page contents. Ensure its `z-index` is higher than the fixed navbar when it receives focus so it remains visible.
+## 2025-05-24 - Missing Skip-to-Content Navigation
+**Learning:** The application featured a persistent header with navigation links but lacked a "Skip to Content" link. This forced keyboard-only and screen reader users to repeatedly navigate through the menu on every page load before reaching the main content, severely degrading the experience.
+**Action:** Always include a visually hidden but focusable "Skip to Content" link (`<a href="#main-content">`) as the very first focusable element in the DOM (e.g., in `app/layout.js`). Ensure the target container (`<main id="main-content">`) has `tabIndex="-1"` and `.skip-link:focus` ensures high visibility above any fixed headers.
