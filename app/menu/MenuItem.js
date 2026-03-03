@@ -68,6 +68,4 @@ const MenuItem = memo(function MenuItem({ item, onSelect }) {
             </div>
         </div>
     );
-});
-
-export default MenuItem;
+}
