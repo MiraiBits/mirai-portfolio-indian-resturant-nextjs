@@ -1,3 +1,10 @@
+/*
+ * ⚡ Bolt: Removed redundant @import for Google Fonts.
+ * The application uses `next/font/google` in app/layout.js which already
+ * optimizes and injects `--font-heading` and `--font-body` CSS variables.
+ * Removing the @import prevents a render-blocking request and double-loading.
+ */
+
 :root {
   /* Brand Colors */
   --saffron: #E37639;
