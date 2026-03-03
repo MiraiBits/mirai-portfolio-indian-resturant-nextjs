@@ -1,3 +1,10 @@
+/*
+ * ⚡ Bolt: Removed redundant @import for Google Fonts.
+ * The application uses `next/font/google` in app/layout.js which already
+ * optimizes and injects `--font-heading` and `--font-body` CSS variables.
+ * Removing the @import prevents a render-blocking request and double-loading.
+ */
+
 :root {
   /* Brand Colors */
   --saffron: #E37639;
@@ -95,10 +102,34 @@ a {
   padding: 0 1rem;
 }
 
+/* Accessibility: Skip to Content */
+.skip-link {
+  position: absolute;
+  top: -100px;
+  left: 0;
+  background-color: var(--saffron);
+  color: white;
+  padding: 1rem;
+  z-index: 2000; /* Ensure it overlays the fixed navbar */
+  font-weight: bold;
+  text-transform: uppercase;
+  transition: top 0.3s ease;
+}
+
+.skip-link:focus {
+  top: 0;
+  outline: 2px solid var(--gold);
+}
+
 @keyframes spin {
   to { transform: rotate(360deg); }
 }
 
 .spin {
   animation: spin 1s linear infinite;
+}
+
+
+#main-content:focus {
+  outline: none;
 }

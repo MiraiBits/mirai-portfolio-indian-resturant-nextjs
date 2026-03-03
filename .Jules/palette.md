@@ -11,3 +11,13 @@
 ## 2024-12-12 - Interactive Form Feedback
 **Learning:** Standard HTML forms are used without client-side feedback (loading, success), causing a "dead" feel on submission.
 **Action:** Convert form pages to Client Components (or use wrapper components) to manage submission state, providing immediate visual feedback (spinner, success message) and `aria-live` announcements.
+
+## 2025-05-24 - Helper Text Association
+**Learning:** Helper text placed near form inputs (like `<small>` tags) is visually associated but not programmatically linked, leaving screen reader users unaware of the context.
+**Action:** Use `aria-describedby` on the input element pointing to the `id` of the helper text element to ensure it is announced when the input receives focus.
+## 2026-02-27 - Hidden Content Navigation with Fixed Navbars
+**Learning:** The application uses a fixed, absolute-positioned navbar at the top of the page. Without a "Skip to Content" link, keyboard-only and screen reader users must tab through every single navigation link on every page load to access the main content, which is a poor accessibility experience.
+**Action:** Always include a "Skip to Content" link at the start of the `<body>` that links to a `#main-content` wrapper around the page contents. Ensure its `z-index` is higher than the fixed navbar when it receives focus so it remains visible.
+## 2025-05-24 - Missing Skip-to-Content Navigation
+**Learning:** The application featured a persistent header with navigation links but lacked a "Skip to Content" link. This forced keyboard-only and screen reader users to repeatedly navigate through the menu on every page load before reaching the main content, severely degrading the experience.
+**Action:** Always include a visually hidden but focusable "Skip to Content" link (`<a href="#main-content">`) as the very first focusable element in the DOM (e.g., in `app/layout.js`). Ensure the target container (`<main id="main-content">`) has `tabIndex="-1"` and `.skip-link:focus` ensures high visibility above any fixed headers.
