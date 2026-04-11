@@ -97,7 +97,7 @@ export default function MenuPage() {
                           This allows the React Compiler to memoize the list items, preventing
                           unnecessary re-renders when parent state changes.
                         */}
-                        {items.map((item, index) => (
+                        {items.map((item) => (
                             <MenuItem
                                 key={item.name}
                                 item={item}
